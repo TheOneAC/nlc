@@ -20,10 +20,13 @@ pycharm连接github的说明
 
 1. 配置github账号 注意要勾选上使用ssh的选项
 
+![Aaron Swartz](https://raw.githubusercontent.com/winuz49/nlc/master/res/1.png)
 
 2. 使用VCS连接github
 
+![Aaron Swartz](https://raw.githubusercontent.com/winuz49/nlc/master/res/2.png)
 
 3. 选择fork的项目 拷贝到本地
 
+![Aaron Swartz](https://raw.githubusercontent.com/winuz49/nlc/master/res/3.png)
 
