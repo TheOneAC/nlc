@@ -30,3 +30,14 @@ pycharm连接github的说明
 
 ![Aaron Swartz](https://raw.githubusercontent.com/winuz49/nlc/master/res/3.png)
 
+
+
+===
+
+pull request 的使用
+
+在自己的项目分支中完成commit后 按下图所示点击pull request 即可 pr 注意写好注释 用命令行的用法自行挖掘了
+
+![Aaron Swartz](https://raw.githubusercontent.com/winuz49/nlc/master/res/4.png)
+
+
