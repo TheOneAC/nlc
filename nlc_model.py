@@ -27,7 +27,7 @@ from tensorflow.python.framework import ops
 from tensorflow.python.framework import dtypes
 from tensorflow.python.ops import array_ops
 from tensorflow.python.ops import control_flow_ops
-from tensorflow.python.ops import embedding_ops
+from tensorflow.python.ops import embedding_ops  # w2v 语料处理
 from tensorflow.python.ops import rnn
 from tensorflow.python.ops import rnn_cell
 from tensorflow.python.ops import variable_scope as vs
@@ -35,6 +35,7 @@ from tensorflow.python.ops.math_ops import sigmoid
 from tensorflow.python.ops.math_ops import tanh
 
 import nlc_data
+# 依赖于　nlc_data
 
 def get_optimizer(opt):
   if opt == "adam":

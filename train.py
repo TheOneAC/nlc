@@ -31,11 +31,14 @@ import tensorflow as tf
 
 import nlc_model
 import nlc_data
+#依赖于　nlc_model 和　nlc_data
 
 from util import pair_iter
 from util import get_tokenizer
+# 依赖于util
 
 import logging
+# 日志
 logging.basicConfig(level=logging.INFO)
 
 tf.app.flags.DEFINE_float("learning_rate", 0.0003, "Learning rate.")
@@ -55,14 +58,14 @@ tf.app.flags.DEFINE_string("tokenizer", "BPE", "BPE / CHAR / WORD.")
 tf.app.flags.DEFINE_string("optimizer", "adam", "adam / sgd")
 tf.app.flags.DEFINE_integer("print_every", 1, "How many iterations to do per print.")
 
-FLAGS = tf.app.flags.FLAGS
+FLAGS = tf.app.flags.FLAGS　#flags 干嘛用的？？？：把以上flags定义全部集中到FLAGS中处理
 
 def create_model(session, vocab_size, forward_only):
   model = nlc_model.NLCModel(
       vocab_size, FLAGS.size, FLAGS.num_layers, FLAGS.max_gradient_norm, FLAGS.batch_size,
       FLAGS.learning_rate, FLAGS.learning_rate_decay_factor, FLAGS.dropout,
       forward_only=forward_only, optimizer=FLAGS.optimizer)
-  ckpt = tf.train.get_checkpoint_state(FLAGS.train_dir)
+  ckpt = tf.train.get_checkpoint_state(FLAGS.train_dir)　　# ckpt 储存检查点状态
   if ckpt and tf.gfile.Exists(ckpt.model_checkpoint_path):
     logging.info("Reading model parameters from %s" % ckpt.model_checkpoint_path)
     model.saver.restore(session, ckpt.model_checkpoint_path)
@@ -73,7 +76,7 @@ def create_model(session, vocab_size, forward_only):
   return model
 
 
-def validate(model, sess, x_dev, y_dev):
+def validate(model, sess, x_dev, y_dev):　# 有效性／正确率？？？有效代价？？
   valid_costs, valid_lengths = [], []
   for source_tokens, source_mask, target_tokens, target_mask in pair_iter(x_dev, y_dev, FLAGS.batch_size, FLAGS.num_layers):
     cost = model.test(sess, source_tokens, source_mask, target_tokens, target_mask)
@@ -91,7 +94,7 @@ def train():
   x_train, y_train, x_dev, y_dev, vocab_path = nlc_data.prepare_nlc_data(
     FLAGS.data_dir + '/' + FLAGS.tokenizer.lower(), FLAGS.max_vocab_size,
     tokenizer=get_tokenizer(FLAGS))
-  vocab, _ = nlc_data.initialize_vocabulary(vocab_path)
+  vocab, _ = nlc_data.initialize_vocabulary(vocab_path)　　# _ ??
   vocab_size = len(vocab)
   logging.info("Vocabulary size: %d" % vocab_size)
 

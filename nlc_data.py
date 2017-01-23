@@ -41,13 +41,13 @@ EOS_ID = 2
 UNK_ID = 3
 
 # Regular expressions used to tokenize.
-_WORD_SPLIT = re.compile(b"([.,!?\"':;)(])")
+_WORD_SPLIT = re.compile(b"([.,!?\"':;)(])")# 正则意义？？？
 _DIGIT_RE = re.compile(br"\d")
 
 _NLC_TRAIN_URL = "http://neuron.stanford.edu/nlc/data/nlc-train.tar"
 _NLC_DEV_URL = "http://neuron.stanford.edu/nlc/data/nlc-valid.tar"
 
-
+# 训练数据不存在，构建文件下载路径
 def maybe_download(directory, filename, url):
   """Download filename from url unless it's already in directory."""
   if not os.path.exists(directory):
@@ -61,7 +61,7 @@ def maybe_download(directory, filename, url):
     print("Succesfully downloaded", filename, statinfo.st_size, "bytes")
   return filepath
 
-
+# 解压下载文件
 def gunzip_file(gz_path, new_path):
   """Unzips from gz_path into new_path."""
   print("Unpacking %s to %s" % (gz_path, new_path))
@@ -73,7 +73,7 @@ def gunzip_file(gz_path, new_path):
 
 def get_nlc_train_set(directory):
   """Download the NLC training corpus to directory unless it's there."""
-  train_path = os.path.join(directory, "train")
+  train_path = os.path.join(directory, "train")　　# join????合并获得文件路径
   print (train_path + ".x.txt")
   print (train_path + ".y.txt")
   if not (gfile.Exists(train_path +".x.txt") and gfile.Exists(train_path +".y.txt")):
@@ -85,7 +85,7 @@ def get_nlc_train_set(directory):
   return train_path
 
 
-def get_nlc_dev_set(directory):
+def get_nlc_dev_set(directory):　# ???dev什么鬼
   """Download the NLC training corpus to directory unless it's there."""
   dev_name = "valid"
   dev_path = os.path.join(directory, dev_name)
@@ -105,14 +105,14 @@ def get_nlc_dev_set(directory):
 def basic_tokenizer(sentence):
   """Very basic tokenizer: split the sentence into a list of tokens."""
   words = []
-  for space_separated_fragment in sentence.strip().split():
+  for space_separated_fragment in sentence.strip().split():#???
     words.extend(re.split(_WORD_SPLIT, space_separated_fragment))
   return [w for w in words if w]
 
 def char_tokenizer(sentence):
   return list(sentence.strip())
 
-def bpe_tokenizer(sentence):
+def bpe_tokenizer(sentence):　# token 处理？？？
   tokens = sentence.strip().split()
   tokens = [w + "</w>" if not w.endswith("@@") else w for w in tokens]
   tokens = [w.replace("@@", "") for w in tokens]

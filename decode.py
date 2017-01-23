@@ -29,10 +29,14 @@ import numpy as np
 from six.moves import xrange
 import tensorflow as tf
 
-import kenlm
+import kenlm   # ???
+# kenlm 一个语言训练模型　简单介绍在以下链接
+# http://www.tuicool.com/articles/FJBRRz
 
 import nlc_model
 import nlc_data
+# 为何在decode 中要反过来依赖　nlc_ 相关文件，现在理解的逻辑应该是在nlc 中调用　decode???
+# 解答：　nlc_model中定义的一个函数叫decode, 而单独的decode 文件是创建nlc_model类对象处理语句，一句话不是一个decode
 from util import get_tokenizer
 
 tf.app.flags.DEFINE_float("learning_rate", 0.001, "Learning rate.")
