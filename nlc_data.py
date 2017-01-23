@@ -73,7 +73,7 @@ def gunzip_file(gz_path, new_path):
 
 def get_nlc_train_set(directory):
   """Download the NLC training corpus to directory unless it's there."""
-  train_path = os.path.join(directory, "train")　　# join????合并获得文件路径
+  train_path = os.path.join(directory, "train")　　# join????　解释：目录　＋　文件名　 = 合并获得文件路径
   print (train_path + ".x.txt")
   print (train_path + ".y.txt")
   if not (gfile.Exists(train_path +".x.txt") and gfile.Exists(train_path +".y.txt")):

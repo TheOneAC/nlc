@@ -81,7 +81,7 @@ def refill(batches, fdx, fdy, batch_size, sort_and_shuffle=True):
 def add_sos_eos(tokens):
   return map(lambda token_list: [nlc_data.SOS_ID] + token_list + [nlc_data.EOS_ID], tokens)
 
-def padded(tokens, depth):
+def padded(tokens, depth): # 为什么要加pad
   maxlen = max(map(lambda x: len(x), tokens))
   align = pow(2, depth - 1)
   padlen = maxlen + (align - maxlen) % align

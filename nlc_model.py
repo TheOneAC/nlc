@@ -92,10 +92,10 @@ class NLCModel(object):
     self.target_length = tf.reduce_sum(self.target_mask, reduction_indices=0)
 
     self.decoder_state_input, self.decoder_state_output = [], []
-    for i in xrange(num_layers):
+    for i in xrange(num_layers):# 扩展成多维输入
       self.decoder_state_input.append(tf.placeholder(tf.float32, shape=[None, size]))
 
-    with tf.variable_scope("NLC", initializer=tf.uniform_unit_scaling_initializer(1.0)):
+    with tf.variable_scope("NLC", initializer=tf.uniform_unit_scaling_initializer(1.0)):# 初始化方式
       self.setup_embeddings()
       self.setup_encoder()
       self.setup_decoder()
@@ -104,7 +104,7 @@ class NLCModel(object):
       self.setup_beam()
 
     params = tf.trainable_variables()
-    if not forward_only:
+    if not forward_only:# 梯度优化方式和学习率
       opt = get_optimizer(optimizer)(self.learning_rate)
 
       gradients = tf.gradients(self.losses, params)

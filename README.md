@@ -38,7 +38,20 @@ To train word level model:
 # nlc_data 检测训练数据是否下载，未下载则下载并处理
 # 要点：　核心时nlc_model 文件，　不是train ，train文件基本没啥看不懂的，核心在域掉用的nlc_model 中的函数
 # 要点：　util 处理分割符即tokenizer，　decoder 做语句分割　，nlc_model建立模型类，　nlc_data　获得训练数据, train启动训练处理　
-# 
+# 要点：　核心是decode 文件中的fix_sent函数
+
+
+#　目前可深究小问题：
+# socket　链接下载训练数据
+# train 中涉及日志处理，py 的log日志包可以熟悉并做下笔记
+#　nlc_data 　中　正则表达式处理部分未细究可查看py的正则并深究并作下正则解析过程记录
+# decode 编码评分规则可以进一步理解下
+#主要工作范围缩小至　nlc_model 类定义，　nlc_data 的正则处理
+# 建议工作方法：　先在看不懂的位置加问题，然后自己尝试解答，或者让他人解答，能解答一定是代码逻辑很清楚了
+# 如果看不懂，就在相应位置加问题
+
+
+
 INTERACTIVE DECODING
 ====================
 
